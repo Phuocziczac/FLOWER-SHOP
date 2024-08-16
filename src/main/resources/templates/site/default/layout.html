@@ -1,0 +1,23 @@
+<!DOCTYPE html>
+
+<html xmlns:th="http://www.thymeleaf.org" xmlns:layout="http://www.ultraq.net.nz/thymeleaf/layout"
+    th:fragment="layout(title, content)" xmlns:sec="http://www.thymeleaf.org/thymeleaf-extras-springsecurity5">
+
+<div th:replace="site/layout/head :: head"></div>
+
+<body ng-app="shopping-card-app" ng-controller="shopping-card-ctrl">
+    <div th:replace="site/layout/header :: header"></div>
+    <div class="container mt-5">
+        <div layout:fragment="content"></div>
+
+
+    </div>
+    <div th:replace="site/layout/footer :: footer"></div>
+
+    <script src="https://cdn.jsdelivr.net/npm/@popperjs/core@2.11.8/dist/umd/popper.min.js"
+        crossorigin="anonymous"></script>
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/js/bootstrap.min.js"
+        crossorigin="anonymous"></script>
+</body>
+
+</html>

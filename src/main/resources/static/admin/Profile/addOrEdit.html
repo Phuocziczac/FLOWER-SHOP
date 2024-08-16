@@ -1,0 +1,77 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org" xmlns:layout="http://www.ultraq.net.nz/thymeleaf/layout"
+    layout:decorate="~{site/default/layout}">
+
+<head>
+    <title>Product Management</title>
+    <!-- Required meta tags -->
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no" />
+
+
+</head>
+
+<body>
+    <header>
+        <!-- place navbar here -->
+    </header>
+    <main class="container mt-5" layout:fragment="content">
+        <form method="post" th:object="${account}" enctype="multipart/form-data">
+            <div class="card">
+                <div class="card-header">
+                    <h5 class="card-title">Add New PRofile</h5>
+                </div>
+                <div class="card-body">
+                    <div class="mb-3">
+                        <label for="username" class="form-label">Username</label>
+
+                        <input type="text" class="form-control" ng-model="form.username" aria-describedby="username"
+                            placeholder="Enter username" readonly />
+
+                    </div>
+                    <div class="mb-3">
+                        <label for="email" class="form-label">Email</label>
+
+                        <input type="text" class="form-control" ng-model="form.email" aria-describedby="email"
+                            placeholder="Enter email" />
+
+                    </div>
+                    <div class="mb-3">
+                        <label for="fullname" class="form-label">fullname</label>
+
+                        <input type="text" class="form-control" ng-model="form.fullname" aria-describedby="fullname"
+                            placeholder="Enter fullname" />
+
+                    </div>
+
+
+                    <div class="mb-3">
+                        <label for="image" class="form-label">Image</label>
+                        <!-- Input field for image -->
+                        <input type="file" class="form-control" id="image" name="image" aria-describedby="imageHelp"
+                            onchange="angular.element(this).scope().imageChanged(this.files)" />
+                        <div class="mb-3">
+                            <label for="imgurl" class="form-label">Image URL</label>
+                            <img ng-src="/images/uploads/images/{{form.image}}" alt=""
+                                style="width: 100px; height: auto;">
+                        </div>
+
+                    </div>
+
+
+                    <button ng-click="reset()" class="btn btn-warning" type="button">Reset</button>
+                    <button ng-click="update()" class="btn btn-primary" type="button">Update</button>
+                    <button ng-click="delete(form)" class="btn btn-danger" type="button">Delete</button>
+                </div>
+
+            </div>
+        </form>
+    </main>
+    <footer>
+        <!-- place footer here -->
+    </footer>
+    <!-- Bootstrap JavaScript Libraries -->
+
+</body>
+
+</html>

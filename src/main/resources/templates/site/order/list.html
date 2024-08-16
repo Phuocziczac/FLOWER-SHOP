@@ -1,0 +1,83 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org" xmlns:layout="http://www.ultraq.net.nz/thymeleaf/layout"
+    layout:decorate="~{site/default/layout}">
+
+<head>
+    <title>Shopping Cart</title>
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/css/bootstrap.min.css" rel="stylesheet">
+</head>
+<style>
+    .card-header {
+        background-color: aqua;
+    }
+
+    .form-control {
+        font-variant: small-caps;
+
+    }
+
+    .card-footer {
+        text-align: right;
+    }
+</style>
+
+<body>
+    <div class="container mt-5" layout:fragment="content">
+
+
+        <div class="card" th:object="${order}">
+            <div class="card-header">YOUR PUCHARSING</div>
+            <div class="card-body">
+                <table class="table">
+
+                    <thead>
+                        <tr>
+                            <th>No.</th>
+                            <th>Order No.</th>
+                            <th>Order Date</th>
+                            <th>Shipping Address</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        <tr th:each="order,state: ${ordersPage}">
+                            <td>[[${state.index}]]</td>
+                            <td>[[${order.orderId}]]</td>
+                            <td>[[${order.orderDate}]]</td>
+                            <td>[[${order.address}]]</td>
+                            <td><a th:href="@{|/site/order/detail/${order.orderId}|}" class="btn btn-default">Search</a>
+                            </td>
+                        </tr>
+                    </tbody>
+
+                </table>
+            </div>
+            <nav aria-label="Page navigation">
+                <ul class="pagination">
+                    <li class="page-item" th:classappend="${ordersPage.hasPrevious() ? '' : 'disabled'}">
+                        <a class="page-link"
+                            th:href="@{|/site/order/list?page=${ordersPage.number - 1}&size=${ordersPage.size}|}">Previous</a>
+                    </li>
+                    <li class="page-item disabled">
+                        <span class="page-link" th:text="${ordersPage.number + 1}"></span>
+                    </li>
+                    <li class="page-item" th:classappend="${ordersPage.hasNext() ? '' : 'disabled'}">
+                        <a class="page-link"
+                            th:href="@{|/site/order/list?page=${ordersPage.number + 1}&size=${ordersPage.size}|}">Next</a>
+                    </li>
+                </ul>
+            </nav>
+        </div>
+    </div>
+    </div>
+
+    <!-- Bootstrap JavaScript Libraries -->
+    <script src="https://cdn.jsdelivr.net/npm/@popperjs/core@2.11.8/dist/umd/popper.min.js"
+        integrity="sha384-I7E8VVD/ismYTF4hNIPjVp/Zjvgyol6VFvRkX/vR+Vc4jQkC+hVqc2pM8ODewa9r"
+        crossorigin="anonymous"></script>
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/js/bootstrap.min.js"
+        integrity="sha384-BBtl+eGJRgqQAUMxJ7pMwbEyER4l1g+O15P+16Ep7Q9Q+zqX6gSbd85u4mG4QzX+"
+        crossorigin="anonymous"></script>
+
+</body>
+
+</html>

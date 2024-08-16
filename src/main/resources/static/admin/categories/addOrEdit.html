@@ -1,0 +1,57 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org" xmlns:layout="http://www.ultraq.net.nz/thymeleaf/layout"
+    layout:decorate="~{site/default/layout}">
+
+<head>
+    <title>Product Management</title>
+    <!-- Required meta tags -->
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no" />
+
+
+</head>
+
+<body>
+    <header>
+        <!-- place navbar here -->
+    </header>
+    <main class="container mt-5" layout:fragment="content">
+        <form method="post" th:object="${category}" enctype="multipart/form-data">
+            <div class="card">
+                <div class="card-header">
+                    <h5 class="card-title">Add New Product</h5>
+                </div>
+                <div class="card-body">
+                    <div class="mb-3">
+                        <label for="categoryId" class="form-label">Category ID</label>
+
+                        <input type="number" class="form-control" ng-model="form.categoryId" aria-describedby="category"
+                            placeholder="Enter category" readonly />
+
+                    </div>
+
+                    <div class="mb-3">
+                        <label for="name" class="form-label"> Name</label>
+                        <input type="text" class="form-control" ng-model="form.name" aria-describedby="NameHelp"
+                            placeholder="Enter Name" required />
+
+                    </div>
+
+
+                    <button ng-click="reset()" class="btn btn-warning" type="button">Reset</button>
+                    <button ng-click="create()" class="btn btn-success" type="button">Create</button>
+                    <button ng-click="update()" class="btn btn-primary" type="button">Update</button>
+                    <button ng-click="delete(form)" class="btn btn-danger" type="button">Delete</button>
+                </div>
+
+            </div>
+        </form>
+    </main>
+    <footer>
+        <!-- place footer here -->
+    </footer>
+    <!-- Bootstrap JavaScript Libraries -->
+
+</body>
+
+</html>

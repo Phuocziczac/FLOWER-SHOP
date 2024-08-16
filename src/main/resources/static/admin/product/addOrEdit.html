@@ -1,0 +1,123 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org" xmlns:layout="http://www.ultraq.net.nz/thymeleaf/layout"
+    layout:decorate="~{site/default/layout}">
+
+<head>
+    <title>Product Management</title>
+    <!-- Required meta tags -->
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no" />
+
+
+</head>
+
+<body>
+    <header>
+        <!-- place navbar here -->
+    </header>
+    <main class="container mt-5" layout:fragment="content">
+        <form method="post" th:object="${product}" enctype="multipart/form-data">
+            <div class="card">
+                <div class="card-header">
+                    <h5 class="card-title">Add New Product</h5>
+                </div>
+                <div class="card-body">
+                    <div class="mb-3">
+                        <label for="productID" class="form-label">Product ID</label>
+
+                        <input type="number" class="form-control" ng-model="form.productID"
+                            aria-describedby="productHelpID" placeholder="Enter Product ID" readonly />
+                        <small id="productHelpID" class="form-text text-muted">Enter the Product ID</small>
+                    </div>
+
+                    <div class="mb-3">
+                        <label for="productName" class="form-label">Product Name</label>
+                        <input type="text" class="form-control" ng-model="form.productName"
+                            aria-describedby="productNameHelp" placeholder="Enter Product Name" required />
+
+                        <small class="text-danger" th:if="${#fields.hasErrors('productName')}"
+                            th:errors="*{productName}">Invalid product name</small>
+                    </div>
+
+                    <div class="mb-3">
+                        <label for="categoryID" class="form-label">Category</label>
+                        <select class="form-select" ng-model="form.categoryId" required>
+                            <option value="" disabled selected>Select a category</option>
+                            <option ng-repeat="category in categories" ng-value="category.categoryId">{{category.name}}
+                            </option>
+                        </select>
+
+                    </div>
+
+                    <div class="mb-3">
+                        <label for="unitPrice" class="form-label">Unit Price</label>
+                        <input type="number" class="form-control" ng-model="form.unitPrice"
+                            aria-describedby="unitPriceHelp" placeholder="Enter Unit Price" step="0.01" required />
+                        <small id="unitPriceHelp" class="form-text text-muted">Enter the Unit Price</small>
+                        <small class="text-danger" th:if="${#fields.hasErrors('unitPrice')}"
+                            th:errors="*{unitPrice}">Invalid unit price</small>
+                    </div>
+
+                    <div class="mb-3">
+                        <label for="quantity" class="form-label">Quantity</label>
+                        <input type="number" class="form-control" ng-model="form.quantity"
+                            aria-describedby="quantityHelp" placeholder="Enter Quantity" required />
+                        <small id="quantityHelp" class="form-text text-muted">Enter the Quantity</small>
+                        <small class="text-danger" th:if="${#fields.hasErrors('quantity')}"
+                            th:errors="*{quantity}">Invalid quantity</small>
+                    </div>
+                    <div class="mb-3">
+                        <label for="image" class="form-label">Image</label>
+                        <!-- Input field for image -->
+                        <input type="file" class="form-control" id="image" name="image" aria-describedby="imageHelp"
+                            onchange="angular.element(this).scope().imageChanged(this.files)" />
+                        <div class="mb-3">
+                            <label for="imgurl" class="form-label">Image URL</label>
+                            <img ng-src="/images/uploads/images/{{form.image}}" alt=""
+                                style="width: 100px; height: auto;">
+                        </div>
+                        <small class="text-danger" th:if="${#fields.hasErrors('image')}" th:errors="*{image}">Invalid
+                            image</small>
+                    </div>
+
+
+
+                    <div class="mb-3">
+                        <label for="enteredDate" class="form-label">Entered Date</label>
+                        <input type="date" class="form-control" ng-model="form.enteredDate"
+                            aria-describedby="enteredDateHelp" required />
+                        <small id="enteredDateHelp" class="form-text text-muted">Enter the Date</small>
+                        <small class="text-danger" th:if="${#fields.hasErrors('enteredDate')}"
+                            th:errors="*{enteredDate}">Invalid date</small>
+                    </div>
+
+                    <div class="mb-3">
+                        <label for="productStatus" class="form-label">Product Status</label>
+                        <select class="form-select" id="productStatus" name="productStatus" ng-model="form.status"
+                            required>
+                            <option value="" disabled selected>Select a status</option>
+                            <option ng-repeat="status in statuses" ng-value="status">{{status}}</option>
+                        </select>
+                        <small id="statusHelp" class="form-text text-muted">Select the Product Status</small>
+                        <small class="text-danger" th:if="${#fields.hasErrors('status')}" th:errors="*{status}">Invalid
+                            status</small>
+                    </div>
+
+
+                    <button ng-click="reset()" class="btn btn-warning" type="button">Reset</button>
+                    <button ng-click="create()" class="btn btn-success" type="button">Create</button>
+                    <button ng-click="update()" class="btn btn-primary" type="button">Update</button>
+                    <button ng-click="delete(form)" class="btn btn-danger" type="button">Delete</button>
+                </div>
+
+            </div>
+        </form>
+    </main>
+    <footer>
+        <!-- place footer here -->
+    </footer>
+    <!-- Bootstrap JavaScript Libraries -->
+
+</body>
+
+</html>
